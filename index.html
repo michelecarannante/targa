@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TARGA SCILLA CARIDDI</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&display=swap');
+
+        :root {
+            --plate-color: #f7ad36;
+            --plate-color2: #0d1042;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 20px;
+            width: 20px;
+            border: 2px solid #333333;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        .info span {
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+        .info:hover {
+            cursor: pointer;
+        }
+
+        .plate {
+            margin-top: 2em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 250px;
+            width: 500px;
+            background-image: linear-gradient(to bottom, var(--plate-color2) 0 25%, var(--plate-color) 25% 27%, var(--plate-color2) 27% 28%, var(--plate-color) 28% 93%, var(--plate-color2) 93% 94%, var(--plate-color) 94% 96%, var(--plate-color2) 96%);
+            border-radius: 10px;
+            box-shadow: rgba(38, 57, 77, .5) 0px 20px 30px -10px;
+        }
+
+        #plate-num {
+            font-size: 90px;
+            color: var(--plate-color2);
+            font-family: 'Dosis', sans-serif;
+            text-shadow: 3px 2px 2px rgb(138, 89, 12, 1), -3px -2px 2px rgba(255, 255, 255, .7);
+            white-space: nowrap; /* Mantiene le parole sullo stesso rigo */
+        }
+
+        button {
+            border: 1px solid var(--plate-color2);
+            background-color: transparent;
+            border-radius: 5px;
+            padding: .5em 1.5em;
+            margin: 2em;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+        }
+        button:hover {
+            scale: .98;
+            cursor: pointer;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 48px;
+            margin: 0;
+            text-transform: uppercase;
+            color: var(--plate-color);
+            transform: translateY(-.35em);
+        }
+
+        h3 {
+            text-transform: uppercase;
+            font-size: 30px;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            margin: 0;
+            color: var(--plate-color2);
+        }
+
+        #modal {
+            display: none;
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            height: 150px;
+            width: 275px;
+            background-color: white;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+            border-radius: 5px;
+            margin: 0;
+            padding: 1em 2em;
+        }
+
+        .close {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 20px;
+            width: 20px;
+            border: 2px solid #333333;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+        .close:hover {
+            cursor: pointer;
+        }
+
+        .close span {
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 12px;
+            color: #333333;
+        }
+    </style>
+</head>
+<body>
+    <div class="info"><span>i</span></div>
+    <div class="plate">
+        <h2>Reggio Calabria</h2>
+        <span id="plate-num">PRENOTA ORA</span>
+        <h3>Scilla Cariddi Rental Boat</h3>
+    </div>
+    <button>GENERA UNA NUOVA TARGA</button>
+    <div id="modal">
+        <p>Visualization of vanity plates made with CSS. Enjoy creative combinations!<br><br>* Data may be limited to predefined words.</p>
+        <div class="close"><span>X</span></div>
+    </div>
+    <script>
+        const words = ["PRENOTA", "ORA"];
+
+        $(function() {
+            // Set default text
+            $("#plate-num").text(words.join(" "));
+            
+            // Generate new plate number on button click
+            $("button").click(function() {
+                const randomPlate = words.map(() => words[Math.floor(Math.random() * words.length)]).join(" ");
+                $("#plate-num").text(randomPlate);
+            });
+
+            // Show/hide modal
+            $(".info").click(function() {
+                $("#modal").toggle();
+            });
+            $(".close").click(function() {
+                $("#modal").toggle();
+            });
+        });
+    </script>
+</body>
+</html>
